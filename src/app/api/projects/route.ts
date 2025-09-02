@@ -7,7 +7,7 @@ export async function GET() {
   try {
     const projects = await prisma.project.findMany({
       orderBy: {
-        createdAt: 'desc'
+        createdAt: "desc"
       }
     });
 
@@ -17,7 +17,7 @@ export async function GET() {
       message: "Projects fetched successfully"
     });
   } catch (error) {
-    console.error('Error fetching projects:', error);
+    console.error("Error fetching projects:", error);
     return NextResponse.json(
       { success: false, message: "Failed to fetch projects" },
       { status: 500 }
@@ -29,10 +29,10 @@ export async function GET() {
 export async function POST(request: NextRequest) {
   try {
     // Check authentication
-    const authHeader = request.headers.get('authorization');
-    const user = verifyAuth(authHeader);
+    const authHeader = request.headers.get("authorization");
+    const user = verifyAuth(authHeader || undefined);
 
-    if (!user || user.role !== 'ADMIN') {
+    if (!user || user.role !== "ADMIN") {
       return NextResponse.json(
         { success: false, message: "Authentication required" },
         { status: 401 }
@@ -73,7 +73,7 @@ export async function POST(request: NextRequest) {
       { status: 201 }
     );
   } catch (error) {
-    console.error('Error creating project:', error);
+    console.error("Error creating project:", error);
     return NextResponse.json(
       { success: false, message: "Failed to create project" },
       { status: 500 }
@@ -85,10 +85,10 @@ export async function POST(request: NextRequest) {
 export async function PUT(request: NextRequest) {
   try {
     // Check authentication
-    const authHeader = request.headers.get('authorization');
-    const user = verifyAuth(authHeader);
+    const authHeader = request.headers.get("authorization");
+    const user = verifyAuth(authHeader || undefined);
 
-    if (!user || user.role !== 'ADMIN') {
+    if (!user || user.role !== "ADMIN") {
       return NextResponse.json(
         { success: false, message: "Authentication required" },
         { status: 401 }
@@ -127,7 +127,7 @@ export async function PUT(request: NextRequest) {
       message: "Project updated successfully"
     });
   } catch (error) {
-    console.error('Error updating project:', error);
+    console.error("Error updating project:", error);
     return NextResponse.json(
       { success: false, message: "Failed to update project" },
       { status: 500 }
@@ -139,10 +139,10 @@ export async function PUT(request: NextRequest) {
 export async function DELETE(request: NextRequest) {
   try {
     // Check authentication
-    const authHeader = request.headers.get('authorization');
-    const user = verifyAuth(authHeader);
+    const authHeader = request.headers.get("authorization");
+    const user = verifyAuth(authHeader || undefined);
 
-    if (!user || user.role !== 'ADMIN') {
+    if (!user || user.role !== "ADMIN") {
       return NextResponse.json(
         { success: false, message: "Authentication required" },
         { status: 401 }
@@ -180,7 +180,7 @@ export async function DELETE(request: NextRequest) {
       message: "Project deleted successfully"
     });
   } catch (error) {
-    console.error('Error deleting project:', error);
+    console.error("Error deleting project:", error);
     return NextResponse.json(
       { success: false, message: "Failed to delete project" },
       { status: 500 }

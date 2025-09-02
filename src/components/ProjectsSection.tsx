@@ -9,15 +9,6 @@ import { useAuth } from "@/contexts/AuthContext";
 import AdminLogin from "./AdminLogin";
 // import Image from "next/image";
 
-interface Project {
-  id: number;
-  title: string;
-  description: string;
-  image: string;
-  category: string;
-  link: string;
-}
-
 export default function ProjectsSection() {
   const router = useRouter();
   const sectionRef = useRef<HTMLElement>(null);
